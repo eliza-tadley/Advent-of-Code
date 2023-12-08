@@ -65,15 +65,14 @@ def parse_data(data):
 
 
 def find_value_from_map(map, original_value):
-    new_value = original_value
     for m in map:
         destination_range_start = m[0]
         source_range_start = m[1]
         range_length = m[2]
         if source_range_start <= original_value < (source_range_start + range_length):
             new_value = destination_range_start + (original_value - source_range_start)
-            break
-    return new_value
+            return new_value
+    return original_value
 
 
 # Part 1
@@ -116,7 +115,7 @@ def p2(seeds, seed_to_soil, soil_to_fertilizer, fertilizer_to_water, water_to_li
 
 
 def main():
-    with open('./input_test.txt', 'r') as f:
+    with open('./input.txt', 'r') as f:
         data = [x.strip() for x in f.readlines()]
 
     seeds, seed_to_soil, soil_to_fertilizer, fertilizer_to_water, water_to_light, light_to_temperature, temp_to_humidity, humidity_to_location = parse_data(data)
